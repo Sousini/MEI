@@ -1,0 +1,399 @@
+    altname enp0s8
+    inet 10.0.2.15/24 metric 100 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 85579sec preferred_lft 85579sec
+    inet6 fd17:625c:f037:2:a00:27ff:fea3:6845/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 86214sec preferred_lft 14214sec
+    inet6 fe80::a00:27ff:fea3:6845/64 scope link 
+       valid_lft forever preferred_lft forever
+3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:93:7f:f0 brd ff:ff:ff:ff:ff:ff
+    altname enp0s9
+    inet 192.168.58.200/24 brd 192.168.58.255 scope global eth1
+       valid_lft forever preferred_lft forever
+    inet6 fd0b:a31d:d849:1382:a00:27ff:fe93:7ff0/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 2591938sec preferred_lft 604738sec
+    inet6 fe80::a00:27ff:fe93:7ff0/64 scope link 
+       valid_lft forever preferred_lft forever
+vagrant@monitor:~$ exit
+logout
+Connection to 192.168.58.200 closed.
+sousini@Mac codebase % clear
+
+sousini@Mac codebase % ssh vagrant@192.168.58.101
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-86-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Sep 21 04:26:13 PM UTC 2026
+
+  System load:           0.0
+  Usage of /:            17.7% of 29.82GB
+  Memory usage:          19%
+  Swap usage:            0%
+  Processes:             102
+  Users logged in:       0
+  IPv4 address for eth0: 10.0.2.15
+  IPv6 address for eth0: fd17:625c:f037:2:a00:27ff:fea3:6845
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Mon Sep 21 16:21:36 2026 from 192.168.58.201
+vagrant@node1:~$ ping 192.168.58.102
+PING 192.168.58.102 (192.168.58.102) 56(84) bytes of data.
+64 bytes from 192.168.58.102: icmp_seq=1 ttl=64 time=0.870 ms
+
+
+64 bytes from 192.168.58.102: icmp_seq=2 ttl=64 time=0.558 ms
+64 bytes from 192.168.58.102: icmp_seq=3 ttl=64 time=0.566 ms
+64 bytes from 192.168.58.102: icmp_seq=4 ttl=64 time=0.695 ms
+64 bytes from 192.168.58.102: icmp_seq=5 ttl=64 time=0.685 ms
+^C
+--- 192.168.58.102 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4109ms
+rtt min/avg/max/mdev = 0.558/0.674/0.870/0.113 ms
+vagrant@node1:~$ ping 192.168.58.10
+PING 192.168.58.10 (192.168.58.10) 56(84) bytes of data.
+64 bytes from 192.168.58.10: icmp_seq=1 ttl=64 time=0.803 ms
+64 bytes from 192.168.58.10: icmp_seq=2 ttl=64 time=0.549 ms
+64 bytes from 192.168.58.10: icmp_seq=3 ttl=64 time=0.689 ms
+64 bytes from 192.168.58.10: icmp_seq=4 ttl=64 time=0.682 ms
+^C
+--- 192.168.58.10 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3105ms
+rtt min/avg/max/mdev = 0.549/0.680/0.803/0.089 ms
+vagrant@node1:~$ ping -c 4 192.168.58.100
+PING 192.168.58.100 (192.168.58.100) 56(84) bytes of data.
+64 bytes from 192.168.58.100: icmp_seq=1 ttl=64 time=1.05 ms
+64 bytes from 192.168.58.100: icmp_seq=2 ttl=64 time=0.534 ms
+64 bytes from 192.168.58.100: icmp_seq=3 ttl=64 time=0.508 ms
+64 bytes from 192.168.58.100: icmp_seq=4 ttl=64 time=0.657 ms
+
+--- 192.168.58.100 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3034ms
+rtt min/avg/max/mdev = 0.508/0.686/1.047/0.215 ms
+vagrant@node1:~$ ping -c 4 192.168.58.200
+PING 192.168.58.200 (192.168.58.200) 56(84) bytes of data.
+64 bytes from 192.168.58.200: icmp_seq=1 ttl=64 time=1.08 ms
+64 bytes from 192.168.58.200: icmp_seq=2 ttl=64 time=0.526 ms
+64 bytes from 192.168.58.200: icmp_seq=3 ttl=64 time=0.724 ms
+64 bytes from 192.168.58.200: icmp_seq=4 ttl=64 time=0.706 ms
+
+--- 192.168.58.200 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3040ms
+rtt min/avg/max/mdev = 0.526/0.759/1.080/0.200 ms
+vagrant@node1:~$ exit
+logout
+Connection to 192.168.58.101 closed.
+sousini@Mac codebase % ssh vagran@192.168.58.10
+vagran@192.168.58.10's password: 
+
+sousini@Mac codebase % ssh vagrant@192.168.58.10
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-86-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Sep 21 04:28:16 PM UTC 2026
+
+  System load:           0.16
+  Usage of /:            21.0% of 29.82GB
+  Memory usage:          20%
+  Swap usage:            0%
+  Processes:             101
+  Users logged in:       0
+  IPv4 address for eth0: 10.0.2.15
+  IPv6 address for eth0: fd17:625c:f037:2:a00:27ff:fea3:6845
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Mon Sep 21 16:23:57 2026 from 192.168.58.201
+vagrant@myvm:~$ ssh vagrant@192.168.58.101
+The authenticity of host '192.168.58.101 (192.168.58.101)' can't be established.
+ED25519 key fingerprint is SHA256:wRjlrEf/gl4q0wKDq7Ohpyr37uYmzT1XeRGTSK6Nh/Q.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.58.101' (ED25519) to the list of known hosts.
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-86-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Sep 21 04:28:57 PM UTC 2026
+
+  System load:           0.0
+  Usage of /:            17.7% of 29.82GB
+  Memory usage:          19%
+  Swap usage:            0%
+  Processes:             99
+  Users logged in:       0
+  IPv4 address for eth0: 10.0.2.15
+  IPv6 address for eth0: fd17:625c:f037:2:a00:27ff:fea3:6845
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Mon Sep 21 16:26:13 2026 from 192.168.58.201
+vagrant@node1:~$ exit
+logout
+Connection to 192.168.58.101 closed.
+vagrant@myvm:~$ ssh vagrant@192.168.58.102
+The authenticity of host '192.168.58.102 (192.168.58.102)' can't be established.
+ED25519 key fingerprint is SHA256:wRjlrEf/gl4q0wKDq7Ohpyr37uYmzT1XeRGTSK6Nh/Q.
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:1: [hashed name]
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.58.102' (ED25519) to the list of known hosts.
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-86-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Sep 21 04:29:18 PM UTC 2026
+
+  System load:           0.0
+  Usage of /:            17.7% of 29.82GB
+  Memory usage:          20%
+  Swap usage:            0%
+  Processes:             98
+  Users logged in:       0
+  IPv4 address for eth0: 10.0.2.15
+  IPv6 address for eth0: fd17:625c:f037:2:a00:27ff:fea3:6845
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Mon Sep 21 16:23:11 2026 from 192.168.58.201
+vagrant@node2:~$ exit
+logout
+Connection to 192.168.58.102 closed.
+vagrant@myvm:~$ ssh vagrant@192.168.58.100
+The authenticity of host '192.168.58.100 (192.168.58.100)' can't be established.
+ED25519 key fingerprint is SHA256:wRjlrEf/gl4q0wKDq7Ohpyr37uYmzT1XeRGTSK6Nh/Q.
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:1: [hashed name]
+    ~/.ssh/known_hosts:4: [hashed name]
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.58.100' (ED25519) to the list of known hosts.
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-86-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Sep 21 04:29:34 PM UTC 2026
+
+  System load:           0.0
+  Usage of /:            17.7% of 29.82GB
+  Memory usage:          9%
+  Swap usage:            0%
+  Processes:             99
+  Users logged in:       0
+  IPv4 address for eth0: 10.0.2.15
+  IPv6 address for eth0: fd17:625c:f037:2:a00:27ff:fea3:6845
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Mon Sep 21 16:24:25 2026 from 192.168.58.201
+vagrant@controlPlane:~$ exit
+logout
+Connection to 192.168.58.100 closed.
+vagrant@myvm:~$ ssh vagrant@192.168.58.200
+The authenticity of host '192.168.58.200 (192.168.58.200)' can't be established.
+ED25519 key fingerprint is SHA256:wRjlrEf/gl4q0wKDq7Ohpyr37uYmzT1XeRGTSK6Nh/Q.
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:1: [hashed name]
+    ~/.ssh/known_hosts:4: [hashed name]
+    ~/.ssh/known_hosts:5: [hashed name]
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.58.200' (ED25519) to the list of known hosts.
+Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-86-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Sep 21 04:29:44 PM UTC 2026
+
+  System load:           0.0
+  Usage of /:            17.7% of 29.82GB
+  Memory usage:          9%
+  Swap usage:            0%
+  Processes:             99
+  Users logged in:       0
+  IPv4 address for eth0: 10.0.2.15
+  IPv6 address for eth0: fd17:625c:f037:2:a00:27ff:fea3:6845
+
+
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+
+Use of this system is acceptance of the OS vendor EULA and License Agreements.
+Last login: Mon Sep 21 16:24:42 2026 from 192.168.58.201
+vagrant@monitor:~$ exit
+logout
+Connection to 192.168.58.200 closed.
+vagrant@myvm:~$ exit
+logout
+Connection to 192.168.58.10 closed.
+sousini@Mac codebase % vagrant provision --provision-with shell
+==> node1: Running provisioner: shell...
+    node1: Running: inline script
+    node1: [ALL|Task 1] Configure SSH Public Key authentication
+    node1: [ALL|Task 2] Update apt package lists
+    node1: Hit:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+    node1: Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+    node1: Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+    node1: Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+    node1: Get:5 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1,331 kB]
+    node1: Get:6 http://ports.ubuntu.com/ubuntu-ports noble-updates/main Translation-en [295 kB]
+    node1: Get:7 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [2,367 kB]
+    node1: Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted Translation-en [362 kB]
+    node1: Fetched 4,481 kB in 3s (1,755 kB/s)
+    node1: Reading package lists...
+==> node2: Running provisioner: shell...
+    node2: Running: inline script
+    node2: [ALL|Task 1] Configure SSH Public Key authentication
+    node2: [ALL|Task 2] Update apt package lists
+    node2: Hit:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+    node2: Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+    node2: Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+    node2: Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+    node2: Get:5 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1,331 kB]
+    node2: Get:6 http://ports.ubuntu.com/ubuntu-ports noble-updates/main Translation-en [295 kB]
+    node2: Get:7 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [2,367 kB]
+    node2: Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted Translation-en [362 kB]
+    node2: Fetched 4,481 kB in 5s (986 kB/s)
+    node2: Reading package lists...
+==> myvm: Running provisioner: shell...
+    myvm: Running: inline script
+    myvm: [ALL|Task 1] Configure SSH Public Key authentication
+    myvm: [ALL|Task 2] Update apt package lists
+    myvm: Hit:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+    myvm: Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+    myvm: Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+    myvm: Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+    myvm: Get:5 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1,331 kB]
+    myvm: Get:6 http://ports.ubuntu.com/ubuntu-ports noble-updates/main Translation-en [295 kB]
+    myvm: Get:7 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [2,367 kB]
+    myvm: Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted Translation-en [362 kB]
+    myvm: Fetched 4,481 kB in 3s (1,482 kB/s)
+    myvm: Reading package lists...
+==> myvm: Running provisioner: shell...
+    myvm: Running: inline script
+    myvm: [myvm|Task 1] Install Ansible
+    myvm: Reading package lists...
+    myvm: Building dependency tree...
+    myvm: Reading state information...
+    myvm: python3-pip is already the newest version (24.0+dfsg-1ubuntu1.3).
+    myvm: 0 upgraded, 0 newly installed, 0 to remove and 208 not upgraded.
+    myvm: Requirement already satisfied: ansible==9.2.0 in /usr/local/lib/python3.12/dist-packages (9.2.0)
+    myvm: Requirement already satisfied: ansible-core==2.16.3 in /usr/local/lib/python3.12/dist-packages (2.16.3)
+    myvm: Requirement already satisfied: jinja2>=3.0.0 in /usr/lib/python3/dist-packages (from ansible-core==2.16.3) (3.1.2)
+    myvm: Requirement already satisfied: PyYAML>=5.1 in /usr/lib/python3/dist-packages (from ansible-core==2.16.3) (6.0.1)
+    myvm: Requirement already satisfied: cryptography in /usr/lib/python3/dist-packages (from ansible-core==2.16.3) (41.0.7)
+    myvm: Requirement already satisfied: packaging in /usr/lib/python3/dist-packages (from ansible-core==2.16.3) (24.0)
+    myvm: Requirement already satisfied: resolvelib<1.1.0,>=0.5.3 in /usr/local/lib/python3.12/dist-packages (from ansible-core==2.16.3) (1.0.1)
+==> controlplane: Running provisioner: shell...
+    controlplane: Running: inline script
+    controlplane: [ALL|Task 1] Configure SSH Public Key authentication
+    controlplane: [ALL|Task 2] Update apt package lists
+    controlplane: Hit:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+    controlplane: Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+    controlplane: Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+    controlplane: Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+    controlplane: Get:5 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1,331 kB]
+    controlplane: Get:6 http://ports.ubuntu.com/ubuntu-ports noble-updates/main Translation-en [295 kB]
+    controlplane: Get:7 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [2,367 kB]
+    controlplane: Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted Translation-en [362 kB]
+    controlplane: Fetched 4,481 kB in 3s (1,669 kB/s)
+    controlplane: Reading package lists...
+==> monitor: Running provisioner: shell...
+    monitor: Running: inline script
+    monitor: [ALL|Task 1] Configure SSH Public Key authentication
+    monitor: [ALL|Task 2] Update apt package lists
+    monitor: Hit:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+    monitor: Get:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease [126 kB]
+    monitor: Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+    monitor: Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+    monitor: Get:5 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 Packages [1,331 kB]
+    monitor: Get:6 http://ports.ubuntu.com/ubuntu-ports noble-updates/main Translation-en [295 kB]
+    monitor: Get:7 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted arm64 Packages [2,367 kB]
+    monitor: Get:8 http://ports.ubuntu.com/ubuntu-ports noble-updates/restricted Translation-en [362 kB]
+    monitor: Fetched 4,481 kB in 2s (2,986 kB/s)
+    monitor: Reading package lists...
+sousini@Mac codebase % vagrant status
+Current machine states:
+
+node1                     running (virtualbox)
+node2                     running (virtualbox)
+myvm                      running (virtualbox)
+controlplane              running (virtualbox)
+monitor                   running (virtualbox)
+
+This environment represents multiple VMs. The VMs are all listed
+above with their current state. For more information about a specific
+VM, run `vagrant status NAME`.
+sousini@Mac codebase % vagrant halt
+==> monitor: Attempting graceful shutdown of VM...
+==> controlplane: Attempting graceful shutdown of VM...
+==> controlplane: Forcing shutdown of VM...
+==> myvm: Attempting graceful shutdown of VM...
+==> myvm: Forcing shutdown of VM...
+==> node2: Attempting graceful shutdown of VM...
+==> node2: Forcing shutdown of VM...
+==> node1: Attempting graceful shutdown of VM...
+==> node1: Forcing shutdown of VM...
+sousini@Mac codebase % vagrant up node1
+Bringing machine 'node1' up with 'virtualbox' provider...
+==> node1: Clearing any previously set forwarded ports...
+==> node1: Clearing any previously set network interfaces...
+==> node1: Preparing network interfaces based on configuration...
+    node1: Adapter 1: nat
+    node1: Adapter 2: hostonly
+==> node1: Forwarding ports...
+    node1: 22 (guest) => 2222 (host) (adapter 1)
+==> node1: Running 'pre-boot' VM customizations...
+==> node1: Booting VM...
+==> node1: Waiting for machine to boot. This may take a few minutes...
+    node1: SSH address: 127.0.0.1:2222
+    node1: SSH username: vagrant
+    node1: SSH auth method: private key
+==> node1: Machine booted and ready!
+==> node1: Checking for guest additions in VM...
+==> node1: Setting hostname...
+==> node1: Configuring and enabling network interfaces...
+==> node1: Mounting shared folders...
+    node1: /Users/sousini/Documents/Universidade/MEI/Ano1/Semestre1/ASCN/codebase => /vagrant
+==> node1: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> node1: flag to force provisioning. Provisioners marked to run always will still run.
+sousini@Mac codebase % vagrant destroy
+    monitor: Are you sure you want to destroy the 'monitor' VM? [y/N] y
+==> monitor: Destroying VM and associated drives...
+    controlplane: Are you sure you want to destroy the 'controlplane' VM? [y/N] y
+==> controlplane: Destroying VM and associated drives...
+    myvm: Are you sure you want to destroy the 'myvm' VM? [y/N] y
+==> myvm: Destroying VM and associated drives...
+    node2: Are you sure you want to destroy the 'node2' VM? [y/N] y
+==> node2: Destroying VM and associated drives...
+    node1: Are you sure you want to destroy the 'node1' VM? [y/N] y
+==> node1: Forcing shutdown of VM...
+==> node1: Destroying VM and associated drives...
+sousini@Mac codebase % 

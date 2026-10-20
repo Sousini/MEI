@@ -1,0 +1,103 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+
+#Notes
+#user name for VMs is created as vagrant
+
+#<vagrant box add bento/ubuntu-24.04> to add a remote OS image to internal repository
+#<vagrant box add my-ubuntu-24.04 /path/to/ubuntu-24.04-arm.box>  to add a local OS image
+#<vagrant up> to start VMs (run at the same folder where this file is, or pass file as argument)
+#<vagrant halt> to stop VMs
+#<vagrant destroy> to remove VMs
+
+#Variables
+PUBLIC_KEY_PATH = "~/.ssh/id_ed25519.pub" #Change me if needed!
+PRIVATE_KEY_PATH = "~/.ssh/id_ed25519"  #Change me if needed!
+READ_PUBLIC_KEY = File.read(File.expand_path(PUBLIC_KEY_PATH)).strip
+
+# Nodes VMs
+Number_Nodes = 2 #number Node VMs to launch
+NODES_IP_RANGE= "192.168.58" #Change me if needed!
+
+# My VM
+MY_VM_IP  = "192.168.58.10"   #Change me if needed!
+
+# Control Plane VM
+CONTROL_PLANE_IP  = "192.168.58.100"   #Change me if needed!
+
+# Monitor VM
+MONITOR_VM_IP = "192.168.58.200" #Change me if needed!
+
+# Box path
+# Download the provided box and update the following variable acordingly
+BOX_PATH = "~/Downloads/ubuntu-24.04-arm.box"
+
+Vagrant.configure("2") do |config|
+
+  # Global configurations
+  config.vm.box = "local-ubuntu-24.04"
+  config.vm.box_url = "file://#{BOX_PATH}"
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 1024
+    vb.cpus = 2
+  end
+  config.vm.provision :shell, privileged: true, inline: $provision_all
+
+  # Nodes VMs configuration
+  (1..Number_Nodes).each do |i|
+    config.vm.define "node#{i}" do |node|
+      node.vm.hostname = "node#{i}"
+      node.vm.network :private_network, ip: "#{NODES_IP_RANGE}.#{100+i}"
+    end
+  end
+
+  # Myvm configuration
+  config.vm.define :myvm do |mv|
+    mv.vm.hostname = "myvm"
+    mv.vm.network :private_network, ip: MY_VM_IP
+    mv.vm.provision :file, source: PRIVATE_KEY_PATH, destination: "~/.ssh/"
+    mv.vm.provision :shell, inline: $provision_myvm
+  end
+
+  # Control Plane VM configuration
+  config.vm.define :controlplane do |cp|
+    cp.vm.hostname = "controlPlane"
+    cp.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+    end
+    cp.vm.network :private_network, ip: CONTROL_PLANE_IP
+  end
+
+  # Monitor VM configuration
+  config.vm.define :monitor do |monitor|
+    monitor.vm.hostname = "monitor"
+    monitor.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+    end
+    monitor.vm.network :private_network, ip: MONITOR_VM_IP
+  end
+
+end
+
+# Provisioning scripts
+$provision_all = <<-SHELL
+  echo "[ALL|Task 1] Configure SSH Public Key authentication"
+  echo "#{READ_PUBLIC_KEY}" >> /home/vagrant/.ssh/authorized_keys
+  sed -i -E 's/^#?PubkeyAuthentication.*/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+  sed -i -E 's/^#?PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
+  systemctl restart ssh.service
+
+  echo "[ALL|Task 2] Update apt package lists"
+  apt-get update -y
+SHELL
+
+$provision_myvm = <<-SHELL
+  echo "[myvm|Task 1] Install Ansible"
+  apt-get install -y python3-pip
+  pip install ansible==9.2.0 ansible-core==2.16.3 --break-system-packages --root-user-action=ignore
+SHELL
