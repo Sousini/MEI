@@ -1,0 +1,66 @@
+# Create a Docker network
+- name: Create a Docker network
+  community.docker.docker_network:
+    name: "{{ db_network }}"
+    state: present
+
+# Get Docker image
+- name: Check if the image exists locally
+  community.docker.docker_image_info:
+    name: "{{ db_image }}"
+  register: image_info
+
+# if the image does not exist locally, pull it
+- name: Pull the image if it does not exist locally
+  community.docker.docker_image:
+    name: "{{ db_image }}"
+    source: pull
+  when: image_info.images | length == 0
+
+# Start the MySQL container
+- name: Run MySQL container
+  community.docker.docker_container:
+    name: "{{ db_host }}"
+    image: "{{ db_image }}"
+    state: started
+    env:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_DATABASE: "{{ db_name }}"
+      MYSQL_USER: "{{ db_username }}"
+      MYSQL_PASSWORD: "{{ db_password }}"
+    volumes:
+      - mysql:/var/lib/mysql
+    networks:
+      - name: "{{ db_network }}"
+    detach: true
+
+# Check if the container is running
+- name: Check if the container is running
+  ansible.builtin.command:
+    cmd: docker ps --quiet --filter "name=^{{ db_host }}$" --filter status=running
+  register: container_status
+  changed_when: false  # Read-only command, so always report "ok" instead of "changed"
+
+# Fail the playbook if the container is not running
+- name: Fail if the container is not running
+  ansible.builtin.fail:
+    msg: "Container {{ db_host }} is not running"
+  when: container_status.stdout | length == 0
+
+# Check if the database is accessible
+# Retry the task up to 12 times with a delay of 10 seconds between retries
+- name: Check if the database is accessible
+  ansible.builtin.command:
+    cmd: docker exec {{ db_host }} mysql -u{{ db_username }} -p{{ db_password }} -e "USE {{ db_name }};"
+  register: db_check
+  retries: 12
+  delay: 10
+  until: db_check.rc == 0
+  changed_when: false
+  failed_when: false  # Don't stop here, so the next task can fail with a custom message
+
+# Fail the playbook if the database is not accessible
+- name: Fail if the database is not accessible
+  ansible.builtin.fail:
+    msg: "Database {{ db_name }} is not accessible. Output: {{ db_check.stderr }}"
+  when: db_check.rc != 0

@@ -1,0 +1,10 @@
+[nodes]
+node1 ansible_host=192.168.58.101
+node2 ansible_host=192.168.58.102
+
+[control_planes]
+controlPlane ansible_host=192.168.58.100
+
+[k8s:children]
+control_planes
+nodes
