@@ -1,0 +1,29 @@
+/* comentario
+   de varias linhas */
+int global = 10;          // variavel global
+double pi = 3.14e0;
+char nl = '\n';
+bool flags[3] = {true, false, !true};
+int vazio[2];
+
+void nada() {}
+
+int max(int a, int b) { if (a > b) return a; else return b; }
+
+int main() {
+    int integer = -5;
+    int intx = - -3;
+    int i;
+    int arr[4] = {};
+    arr[1 + 1] = max(integer, global) * (2 + 3) % 4;
+    for (i = 0; i < 4; i = i + 1) { arr[i] = i; }
+    for (;;) { break; }
+    if (integer < 0) if (intx >= 3) print("dentro \"aspas\""); else print('x');
+    while (!(i <= 0) && i != 1 || false) { i = i - 1; continue; }
+    print((double) i / 2.5 - 1.0E-3);
+    nada();
+    {
+        int bloco = 1;
+    }
+    return;
+}
