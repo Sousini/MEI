@@ -89,7 +89,7 @@ Este repositório serve fins **académicos e de organização pessoal**. Se és 
 **João Sousa**
 
 [![GitHub](https://img.shields.io/badge/GitHub-Sousini-181717?style=for-the-badge&logo=github)](https://github.com/Sousini)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jo%C3%A3o-sousa-63ab4537a/)
+
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2c5364,100:0f2027&height=100&section=footer" alt="footer" />
 
