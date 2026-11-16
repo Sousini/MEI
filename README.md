@@ -1,14 +1,15 @@
 <div align="center">
 
-# 🎓 MEI
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=180&section=header&text=University&fontSize=56&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=MSc%20in%20Informatics%20Engineering%20%7C%20University%20of%20Minho%20%7C%202022%20-%202025&descAlignY=60&descSize=16" alt="header" />
 
-### Mestrado em Engenharia Informática
+### 🎓 Mestrado em Engenharia Informática
 
-Trabalhos, projetos e materiais de estudo organizados por ano e unidade curricular.
+My journey through my MSc in Informatics Engineering at the **University of Minho**:
+subjects, exercises, practical assignments and projects, year by year.
 
-![Estado](https://img.shields.io/badge/estado-em%20curso-brightgreen?style=for-the-badge)
-![Ano](https://img.shields.io/badge/ano-1.º-blue?style=for-the-badge)
-![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![Years](https://img.shields.io/badge/2026---3%20years-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-on-going-brightgreen?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-lightgrey?style=for-the-badge)
 
 </div>
 
