@@ -7,8 +7,8 @@
 My journey through my MSc in Informatics Engineering at the **University of Minho**:
 subjects, exercises, practical assignments and projects, year by year.
 
-![Years](https://img.shields.io/badge/2026-sem%20fim-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/status-on%20going-orange?style=for-the-badge)
+![Years](https://img.shields.io/badge/2026-????-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-on%20going-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey?style=for-the-badge)
 
 </div>
