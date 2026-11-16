@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=180&section=header&text=University&fontSize=56&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=MSc%20in%20Informatics%20Engineering%20%7C%20University%20of%20Minho%20%7C%202026%20-%20202?&descAlignY=60&descSize=16" alt="header" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=180&section=header&text=University&fontSize=56&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=MSc%20in%20Informatics%20Engineering%20%7C%20University%20of%20Minho%20%7C%202026%20-%20????&descAlignY=60&descSize=16" alt="header" />
 
 ### 🎓 Mestrado em Engenharia Informática
 
