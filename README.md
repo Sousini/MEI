@@ -66,7 +66,7 @@ subjects, exercises, practical assignments and projects, year by year.
 
 ## 📊 Linguagens mais usadas
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Sousini&repo=MEI&layout=compact)](https://github.com/Sousini/MEI)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Sousini&repo=MEI&layout=compact&theme=github_dark&bg_color=090d13&border_color=1f242c&title_color=f0f6fc&text_color=8b949e)](https://github.com/Sousini/MEI)
 
 ---
 
