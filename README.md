@@ -34,6 +34,12 @@ subjects, exercises, practical assignments and projects, year by year.
 
 ---
 
+## 📊 Linguagens mais usadas
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Sousini&repo=MEI&layout=compact)](https://github.com/Sousini/MEI)
+
+---
+
 ## 📖 Unidades curriculares
 
 ### 1.º Ano
