@@ -1,0 +1,58 @@
+// Smells so detetados: S17-S25
+
+int g = 0;
+
+double area(double w, double h, double d, int u) {
+    return w * h * 3.14;
+}
+
+int classify(int a, int b, int c) {
+    int result = 0;
+    if (a > 0) {
+        if (b > 0) {
+            while (c > 0) {
+                if (a > b && b > c || c > 100 && a != 7) {
+                    result = result + 1;
+                }
+                c = c - 1;
+            }
+        }
+    }
+    g = result;
+    return result;
+}
+
+int report(int n) {
+    int total = 0;
+    for (int i = 0; i < n; i = i + 1) {
+        if (i % 3 == 0) {
+            total = total + i * 10;
+            print(total);
+        }
+    }
+    for (int i = 0; i < n; i = i + 1) {
+        if (i % 3 == 0) {
+            total = total + i * 10;
+            print(total);
+        }
+    }
+    total = total + 1;
+    total = total + 1;
+    total = total + 1;
+    total = total + 1;
+    total = total + 1;
+    total = total + 1;
+    total = total + 1;
+    total = total + 1;
+    total = total + 1;
+    total = total + 1;
+    return total;
+}
+
+int main() {
+    print(area(2.0, 3.0, 1.0, 1));
+    print(classify(5, 3, 2));
+    print(report(7));
+    print(g);
+    return 0;
+}

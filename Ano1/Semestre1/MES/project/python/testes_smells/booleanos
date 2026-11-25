@@ -1,0 +1,52 @@
+// Smells com booleanos e ifs: S01, S02, S05, S06, S10, S11, S04
+
+bool is_even(int n) {
+    if (n % 2 == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool is_odd(int n) {
+    if (is_even(n) == true)
+        return false;
+    return true;
+}
+
+bool positive(int n) {
+    bool result;
+    if (n > 0) {
+        result = true;
+    } else {
+        result = false;
+    }
+    return result;
+}
+
+int count_matches(int limit) {
+    int count = 0;
+    for (int i = 0; i < limit; i = i + 1) {
+        if (is_even(i) != false) {
+            if (positive(i) == true) {
+                count = count + 1;
+            }
+        }
+    }
+    return (int) count;
+}
+
+int main() {
+    bool flag = !!positive(3);
+    if (flag == false) {
+    } else {
+        print("positive");
+    }
+    if (is_odd(7)) {
+        print("odd");
+    } else {
+    }
+    print(count_matches(10));
+    print(- -count_matches(5));
+    return 0;
+}
