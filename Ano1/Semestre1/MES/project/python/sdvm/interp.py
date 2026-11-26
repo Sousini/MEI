@@ -6,19 +6,18 @@ comportamento do programa, por isso corremos o programa original e o
 refatorado com o mesmo input e comparamos o output.
 
 Uso:
-    python sdvm_interp.py programa [inputs...]
+    python -m sdvm run programa [inputs...]
 
-    from sdvm_interp import executa
+    from sdvm.interp import executa
     saida, retorno = executa(ast, inputs=[5, 3])
 """
 
-import sys
 
-from sdvm_parser import (Array, Assign, AssignIndex, Binary, Block, BoolLit,
+from .parser import (Array, Assign, AssignIndex, Binary, Block, BoolLit,
                          Break, Call, Cast, CharLit, Continue, ExpStmt,
                          FloatLit, For, Function, GlobalVar, Ident, If, Index,
                          IntLit, LocalVar, Print, ReadVar, Return, StringLit,
-                         Unary, Var, While, parse_sdvm)
+                         Unary, Var, While)
 
 LIMITE_PASSOS = 1_000_000
 
@@ -309,10 +308,3 @@ def executa(prog, inputs=()):
         return it.saida if hasattr(it, "saida") else [], "ERRO: " + str(e)
     return it.saida, r
 
-
-if __name__ == "__main__":
-    with open(sys.argv[1], encoding="utf-8") as f:
-        ast = parse_sdvm(f.read())
-    saida, r = executa(ast, [int(x) for x in sys.argv[2:]])
-    print("\n".join(saida))
-    print("-- main devolveu", r)

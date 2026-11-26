@@ -1,7 +1,7 @@
 """
 Refactoring / eliminacao de smells da SDVM-Lang (S01-S16).
 
-Usa as mesmas regras que a detecao (sdvm_smells.REGRAS), agora numa
+Usa as mesmas regras que a detecao (smells.REGRAS), agora numa
 estrategia Type-Preserving:
 
     st.innermost(step, obj(decl))
@@ -21,8 +21,8 @@ from collections import Counter
 from pyztrategic import strategy as st
 from pyztrategic.zipper import obj
 
-from sdvm_analise import contexto, protege
-from sdvm_smells import NaoAplica, regras, remove_codigo_morto
+from .analise import contexto, protege
+from .smells import NaoAplica, regras, remove_codigo_morto
 
 MAX_ITERACOES = 50
 

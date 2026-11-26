@@ -7,11 +7,11 @@ parse(pretty(ast)) == ast  (round-trip).
 NOTA: os comentarios do programa original perdem-se (o parser nao os guarda).
 
 Uso:
-    from sdvm_pretty import pretty
+    from sdvm.pretty import pretty
     print(pretty(ast))
 """
 
-from sdvm_parser import (Array, Assign, AssignIndex, Binary, Block, BoolLit,
+from .parser import (Array, Assign, AssignIndex, Binary, Block, BoolLit,
                          Break, Call, Cast, CharLit, Continue, ExpStmt,
                          FloatLit, For, Function, GlobalVar, Ident, If, Index,
                          IntLit, LocalVar, Print, ReadVar, Return, StringLit,

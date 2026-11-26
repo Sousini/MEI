@@ -13,7 +13,7 @@ Cada smell tem um codigo (S01, S02, ...). Ha dois grupos:
   * S17-S25: smells so detetados (o refactoring precisa de decisoes de
     desenho - nomes, partir funcoes, ... - e fica para o programador).
 
-Ver CATALOGO_SMELLS.md para a descricao completa com exemplos.
+Ver docs/CATALOGO_SMELLS.md para a descricao completa com exemplos.
 """
 
 from collections import Counter, defaultdict
@@ -21,16 +21,16 @@ from dataclasses import dataclass, replace
 
 from pyztrategic import strategy as st
 
-from sdvm_analise import (NUMERICOS, como_instrucao, conta_instrucoes,
+from .analise import (NUMERICOS, como_instrucao, conta_instrucoes,
                           contexto, espalha, funcoes_chamadas, nega,
                           nomes_escritos, nomes_usados, profundidade,
                           puro, recolhe, recolhe_tipo, tamanho,
                           tem_declaracoes, termina, tipo, unico, vazio)
-from sdvm_parser import (Array, Assign, AssignIndex, Binary, Block, BoolLit,
+from .parser import (Array, Assign, AssignIndex, Binary, Block, BoolLit,
                          Call, Cast, ExpStmt, FloatLit, For, Function,
                          GlobalVar, Ident, If, Index, IntLit, LocalVar,
                          Return, Unary, While)
-from sdvm_pretty import pretty_no
+from .pretty import pretty_no
 
 # ----------------------------------------------------------------------
 # limites usados nos smells so detetados (podem ser ajustados)

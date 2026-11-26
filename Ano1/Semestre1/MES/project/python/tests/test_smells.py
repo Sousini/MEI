@@ -1,8 +1,8 @@
 """
 Testes da detecao e do refactoring de smells.
 
-Correr:
-    python test_smells.py          (ou: python -m pytest test_smells.py)
+Correr (a partir da pasta python/):
+    python tests/test_smells.py        (ou: python -m pytest tests)
 
 O que se testa:
   1. cada smell do catalogo e detetado num exemplo pequeno, e o refactoring
@@ -16,15 +16,19 @@ O que se testa:
      confirmamos que o refactoring nunca muda o comportamento.
 """
 
-import glob
 import random
 import sys
+from pathlib import Path
 
-from sdvm_interp import executa
-from sdvm_parser import parse_sdvm
-from sdvm_pretty import pretty
-from sdvm_refactor import refatora
-from sdvm_smells import CATALOGO, detecta, resumo
+PYTHON = Path(__file__).resolve().parent.parent          # pasta python/
+PROGRAMAS = PYTHON.parent / "programas"                  # pasta programas/
+sys.path.insert(0, str(PYTHON))
+
+from sdvm.interp import executa          # noqa: E402
+from sdvm.parser import parse_sdvm       # noqa: E402
+from sdvm.pretty import pretty           # noqa: E402
+from sdvm.refactor import refatora       # noqa: E402
+from sdvm.smells import CATALOGO, detecta, resumo   # noqa: E402
 
 AUTOMATICOS = {c for (c, i) in CATALOGO.items() if i.automatico}
 
@@ -182,7 +186,8 @@ def test_nao_aplica_nos_tipos_errados():
 # 3. programas de exemplo
 # ======================================================================
 
-FICHEIROS = sorted(glob.glob("exemplos/*")) + ["testes/extra_ok"] + sorted(glob.glob("testes_smells/*"))
+FICHEIROS = (sorted((PROGRAMAS / "exemplos").iterdir()) + [PROGRAMAS / "parser" / "extra_ok"]
+             + sorted((PROGRAMAS / "smells").iterdir()))
 INPUTS = [[17], [2000], [0], [1], [-5], [97]]
 
 

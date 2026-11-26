@@ -13,7 +13,7 @@ from dataclasses import dataclass, field
 from pyztrategic import strategy as st
 from pyztrategic.zipper import obj
 
-from sdvm_parser import (Array, Assign, AssignIndex, Binary, Block, BoolLit,
+from .parser import (Array, Assign, AssignIndex, Binary, Block, BoolLit,
                          Break, Call, Cast, CharLit, Continue, ExpStmt,
                          FloatLit, For, Function, GlobalVar, Ident, If, Index,
                          IntLit, LocalVar, Print, ReadVar, Return, StringLit,

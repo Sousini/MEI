@@ -5,20 +5,16 @@ Manutencao e Evolucao de Software
 Feito com parser combinators (biblioteca parsy), como o exemplo
 expAST.py dado nas aulas. E a traducao para Python do parser em Haskell.
 
-Instalar a biblioteca:
-    pip install parsy
-
-Correr:
-    python sdvm_parser.py exemplos/factorial exemplos/fibonacci ...   -> OK / ERRO
-    python sdvm_parser.py --ast exemplos/factorial                    -> mostra a AST
+Correr (a partir da pasta python/):
+    python -m sdvm parse ../programas/exemplos/*      -> OK / ERRO
+    python -m sdvm ast ../programas/exemplos/factorial -> mostra a AST
 
 Testar pecas soltas (no terminal interativo do Python):
-    python -i sdvm_parser.py
+    >>> from sdvm.parser import *
     >>> expression.parse("1 + 2 * 3")
 """
 
 import re
-import sys
 from dataclasses import dataclass
 
 from parsy import (ParseError, alt, eof, fail, forward_declaration,
@@ -407,13 +403,3 @@ def testar(nome):
         print("OK     " + nome)
     except ParseError as e:
         print("ERRO   " + nome + "   (" + mensagem_erro(e) + ")")
-
-if __name__ == "__main__":
-    argumentos = sys.argv[1:]
-    if argumentos and argumentos[0] == "--ast":
-        for nome in argumentos[1:]:
-            print("==== " + nome)
-            parse_ficheiro(nome)
-    else:
-        for nome in argumentos:
-            testar(nome)

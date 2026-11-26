@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Haskell
+*.hi
+*.o
+
+# programas gerados pelo refactoring
+*.refatorado

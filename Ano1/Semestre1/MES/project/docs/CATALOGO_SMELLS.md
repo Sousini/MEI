@@ -19,7 +19,7 @@ Há dois grupos:
 
 * **Uma regra por smell.** Cada smell do grupo A é uma função
   `regra(no, ctx) -> (no_novo, excerto)` que levanta `NaoAplica` quando o smell não
-  está naquele nó (`sdvm_smells.py`). A **mesma regra** é usada para:
+  está naquele nó (`python/sdvm/smells.py`). A **mesma regra** é usada para:
   * **detetar**: estratégia *Type-Unifying* `full_tdTU` que percorre a AST e recolhe
     todos os nós onde a regra se aplica;
   * **refatorar**: estratégia *Type-Preserving* `innermost` que substitui cada nó pelo
@@ -33,10 +33,10 @@ Há dois grupos:
   refactorings combinam-se: `if (x == true) {} else { return !!y; }` passa a
   `if (!x) return y;` (S01 + S10 + S02). Alguns só ficam possíveis depois de outros
   (ex.: uma variável só usada numa variável que foi removida), por isso o processo
-  completo repete-se até o programa não mudar (`sdvm_refactor.refatora`).
+  completo repete-se até o programa não mudar (`sdvm/refactor.py`, função `refatora`).
 * **Segurança (não mudar o comportamento).** Um refactoring não pode alterar o
   comportamento externo do programa. Para isso:
-  * há uma pequena **inferência de tipos** (`sdvm_analise.tipo`): por exemplo,
+  * há uma pequena **inferência de tipos** (`sdvm/analise.py`, função `tipo`): por exemplo,
     `x == true` só passa a `x` se `x` for `bool` (com `int x = 2`, `x == true` é falso
     mas `x` é verdadeiro);
   * uma expressão só se pode apagar ou deixar de avaliar se for **pura** (não chama
@@ -232,16 +232,16 @@ int unused = 5;                →     (removido)
 | S24 | Parâmetro não usado | parâmetro que a função nunca usa | *Remove Parameter* (e os argumentos nas chamadas) |
 | S25 | Condição complexa | condição com 3 ou mais `&&`/`\|\|` | *Decompose Conditional* (partes em variáveis `bool` com nome) |
 
-Os limites estão no início de `sdvm_smells.py` e podem ser ajustados.
+Os limites estão no início de `python/sdvm/smells.py` e podem ser ajustados.
 
 ---
 
-## Como se testa (`test_smells.py`)
+## Como se testa (`python/tests/test_smells.py`)
 
 1. Um exemplo por smell: é detetado e o refactoring dá o código esperado.
 2. Casos em que o refactoring **não** se pode aplicar (tipos errados, chamadas com efeitos, declarações).
-3. Nos 15 exemplos da linguagem, em `testes/extra_ok` e nos programas de `testes_smells/`:
+3. Nos 15 exemplos da linguagem, em `programas/parser/extra_ok` e nos programas de `programas/smells/`:
    o programa refatorado é aceite pelo parser, já não tem smells S01–S16, refatorar outra
    vez não muda nada, e **faz exatamente o mesmo**: corremos o original e o refatorado com o
-   interpretador `sdvm_interp.py` (com vários inputs) e comparamos o output e o valor de retorno.
+   interpretador `sdvm/interp.py` (com vários inputs) e comparamos o output e o valor de retorno.
 4. Teste aleatório: geramos 300 programas cheios de smells e verificamos o mesmo.

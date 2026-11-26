@@ -3,11 +3,11 @@
   Manutencao e Evolucao de Software
 
   Testar ficheiros (no PowerShell):
-     runghc SDVMParser.hs (Get-ChildItem exemplos, testes -File).FullName
+     runghc SDVMParser.hs (Get-ChildItem ../programas/exemplos, ../programas/parser -File).FullName
   No ghci:
      ghci SDVMParser.hs
      ghci> pExp "1 + 2 * 3"
-     ghci> parseFicheiro "exemplos/factorial"
+     ghci> parseFicheiro "../programas/exemplos/factorial"
 -}
 
 module Main where
@@ -415,7 +415,7 @@ parseSDVM src = case [ p | (p, "") <- pProgram src ] of
                   (p:_) -> Just p
                   []    -> Nothing
 
--- para usar no ghci:  parseFicheiro "exemplos/factorial"
+-- para usar no ghci:  parseFicheiro "../programas/exemplos/factorial"
 parseFicheiro :: FilePath -> IO ()
 parseFicheiro f = do
   src <- readFile f
